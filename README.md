@@ -1,0 +1,127 @@
+[222.html](https://github.com/user-attachments/files/26486331/222.html)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<title>简易有声相册</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Microsoft Yahei", sans-serif;
+}
+
+body {
+  background: #f7f8fa;
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+.album-box {
+  width: 90%;
+  max-width: 700px;
+  height: 420px;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+.album-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.album-box img.active {
+  opacity: 1;
+}
+
+.controls {
+  margin-top: 25px;
+  display: flex;
+  gap: 12px;
+}
+
+.controls button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background: #409eff;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.controls button:hover {
+  background: #338ecc;
+}
+
+.controls button:active {
+  transform: scale(0.96);
+}
+</style>
+</head>
+
+<body>
+<h2>我的有声相册</h2>
+
+<div class="album-box">
+  <img src="https://picsum.photos/700/420?1" class="active" />
+  <img src="https://picsum.photos/700/420?2" />
+  <img src="https://picsum.photos/700/420?3" />
+  <img src="https://picsum.photos/700/420?4" />
+</div>
+
+<div class="controls">
+  <button onclick="playMusic()">播放音乐</button>
+  <button onclick="pauseMusic()">暂停音乐</button>
+</div>
+
+<audio id="bgm" loop>
+  <source src="4月5日.mp3" type="audio/mp3">
+
+
+<script>
+  const imgs = document.querySelectorAll('.album-box img');
+  const audio = document.getElementById('bgm');
+  let index = 0;
+
+  function playMusic() {
+    audio.play();
+  }
+
+  function pauseMusic() {
+    audio.pause();
+  }
+
+  // 自动轮播
+  setInterval(() => {
+    imgs[index].classList.remove('active');
+    index = (index + 1) % imgs.length;
+    imgs[index].classList.add('active');
+  }, 3000);
+</script>
+</body>
+</html>
+</body>
+</html>
